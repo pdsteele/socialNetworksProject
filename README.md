@@ -7,17 +7,22 @@ Class Project Comparing Graph Generation Performance using Twitter Data
 
 Instructions: 
 
-To clone: git clone https://github.com/pdsteele/socialNetworksProject.git
+To clone: 
+                    git clone https://github.com/pdsteele/socialNetworksProject.git
 
-To compile: make all
+To compile: 
+                    make all
 
-To commit changes: git add -a 
+To commit changes: 
+                    git add -A 
 
-                   git commit -m "comment about commit"
+                    git commit -m "comment about commit"
 
-To upload back to github: git push origin master (then submit un/pw)
+To upload back to github: 
+                            git push origin master (then submit un/pw)
 
-To get updates from github: git pull
+To get updates from github: 
+                            git pull
 
 =====================
 
