@@ -37,7 +37,12 @@ git pull
 
 File descriptions: 
 
-readInData.cc handles turning the twitter dataset and sub-sample into SNAP graph objects and exporting them
+readInData.cc handles turning the twitter dataset and sub-sample edge lists into SNAP graph objects and exporting them to binary files
+
+Example usage:
+```
+./proj-readInData test.txt outputGraph.graph
+```
 
 =====================
 
