@@ -5,7 +5,6 @@ include ./Makefile.config
 
 PROJS = \
 	proj-readInData \
-	proj-calcStats \
 	\
 
 all: Core $(PROJS)
