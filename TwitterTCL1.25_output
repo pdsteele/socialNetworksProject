@@ -1,0 +1,28 @@
+Loading data from: TwitterTCL1.25.graph 
+Read file in 0 seconds 
+
+Total number of nodes = 59 
+Total number of edges = 59
+
+Full graph diameter = 56
+90th percentile effective diameter = 57 - Diameters found in 0 seconds 
+
+Largest SCC number of nodes = 21 
+Largest SCC number of edges = 21
+SCC Diameter = 20
+SCC Stats found in 0 seconds 
+
+Full graph has average clustering coefficient = 0.000000 
+Full graph has the following clustering coefficient distribution:
+	Degree: 1.000000 | Clustering Coefficient: 0.000000
+	Degree: 2.000000 | Clustering Coefficient: 0.000000
+	Degree: 3.000000 | Clustering Coefficient: 0.000000
+Clustering Coefficient Distribution plotted in 1 seconds 
+
+In-degree distribution plotted in 0 seconds 
+
+Out-degree distribution plotted in 0 seconds 
+
+size 650
+Hop plot generated in 0 seconds 
+
