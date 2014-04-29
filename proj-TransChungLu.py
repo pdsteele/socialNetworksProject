@@ -208,8 +208,8 @@ def TransChungLu():
 			
 		r = Bernouli(0.6) #NEED to change the "p" prob value here
 		if r == 1:
-			v_k = Uniform_Pick(Edges[v_j]) 
-			v_i = Uniform_Pick(Edges[v_k])  #establishes (vi,vk) -> (vk,vj)
+			v_k = Uniform_Pick(Edges, v_j) 
+			v_i = Uniform_Pick(Edges, v_k)  #establishes (vi,vk) -> (vk,vj)
 		else:
 			prob = random.random()
 			v_i = Node_Select(out_Pi, prob)
@@ -254,11 +254,11 @@ def Print_Model(edgeDict):
 		for sourceNode in sourceSet:
 			File.write("%d %d\n" % (sourceNode,targetNode))
 			
-def Uniform_Pick(Set):	
-	if len(Set) != 0:
-		return (random.sample(Set,1)[0])
+def Uniform_Pick(edgeDict, v_j):	
+	try:
+		return (random.sample(edgeDict[v_j],1)[0])
 	else:
-		return random.randint(1,81306)
+		return (random.randint(1,81306))
 
 def Node_Select(Pi, prob):
 	return (bisect.bisect(Pi,prob)) #O(logn) instead of O(n) for each call
