@@ -631,14 +631,21 @@ def RandWalk(): #81306 nodes
 	
 	File = open("TCL","r")
 	Mega = [[]] #added an extra list to have index be the node number
+	for i in range(81306):
+		Mega.append([])
+		
 	for line in File:
 		line = line.strip()
 		line = line.split()
-		line = line[1:]
+		#line = line[1:]
+		
+		(line[0],line[1]) = (int(line[0]),int(line[1]))
+		if line[1] not in Mega[line[0]]:
+			Mega[line[0]].append(line[1])
 		#Remember to exclude line[0]!!!
-		for i in range(len(line)):
-			line[i] = int(line[i])
-		Mega.append(line)	
+		#for i in range(len(line)):
+		#	line[i] = int(line[i])
+		#Mega.append(line)	
 			
 	File.close()
 	
@@ -665,7 +672,7 @@ def RandWalk(): #81306 nodes
 	j = 0
 	Connect = [[start]]
 	next = random.randint(0,len(Mega[node])-1)
-	while (iter < 242076500) and (i < 2420765/4):
+	while (iter < 242076500) and (i < 2420765/2):
 		
 		#if Check[node][next] == 0:
 		val = Mega[node][next]
@@ -692,7 +699,7 @@ def RandWalk(): #81306 nodes
 	
 	
 		
-	File = open("TwitterTCL1.25","w")
+	File = open("TwitterTCL1.50","w")
 	for i in range(len(Connect)):
 		for j in range(len(Connect[i])-1):
 			line = "%d %d\n" % (Connect[i][j],Connect[i][j+1])
