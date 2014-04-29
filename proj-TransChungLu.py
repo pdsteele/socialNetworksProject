@@ -257,7 +257,7 @@ def Print_Model(edgeDict):
 def Uniform_Pick(edgeDict, v_j):	
 	try:
 		return (random.sample(edgeDict[v_j],1)[0])
-	else:
+	except:
 		return (random.randint(1,81306))
 
 def Node_Select(Pi, prob):
