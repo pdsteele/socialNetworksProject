@@ -203,7 +203,8 @@ edgeSet1 = createEdges(nodeList_source_1, nodeList_target_1)
 edgeSet2 = createEdges(nodeList_target_1, nodeList_source_1)
 edgeSet3 = createEdges(nodeList_source_2, nodeList_target_2)
 
-edgeSet = edgeSet1 + edgeSet2 + edgeSet3
+edgeSet = set()
+edgeSet |= edgeSet1 | edgeSet2 | edgeSet3 #union of the three edge sets
 
 
 #output edge list 

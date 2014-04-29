@@ -118,7 +118,7 @@ def TransChungLu():
 
 	#(Edges, Time_Map, in_Pi, out_Pi, in_pi, out_pi, num_edges) = ChungLu()
 	
-	File = open("CL1","r")
+	File = open("FRDG","r")
 	List = []
 	for line in File:
 		line = line.strip()
@@ -224,7 +224,7 @@ def TransChungLu():
 	Print_Model(Edges)
 			
 def Print_Model(Set):
-	File = open("TCL","w")
+	File = open("FRDG_TCL","w")
 	for item in Set:
 		File.write("%d %d\n" % (item[0],item[1]))
 		
@@ -261,4 +261,4 @@ def PrintChungLu(Edges):
 	File.close()
 
 
-ChungLu()
+TransChungLu()
