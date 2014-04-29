@@ -254,9 +254,10 @@ def TransChungLu():
 def Print_Model(edgeDict):
 	File = open("FRDG_TCL","w")
 	#each key is a target node, with a set of source nodes
-	for targetNode, sourceSet in edgeDict:
+	for targetNode in edgeDict:
+		sourceSet = edgeDict[targetNode]
 		for sourceNode in sourceSet:
-			File.write("%d %d\n" % (sourceNode,targetNode))
+			File.write("%d %d\n" % (int(sourceNode),int(targetNode)))
 			
 def Uniform_Pick(edgeDict, v_j):	
 	try:
@@ -280,5 +281,8 @@ def PrintChungLu(Edges):
 		
 	File.close()
 
-
+start = time.time()
 TransChungLu()
+done = time.time()
+delta = done - start
+print("This program took {0:f}".format(delta))
