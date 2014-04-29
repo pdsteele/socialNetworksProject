@@ -163,7 +163,7 @@ def TransChungLu():
 	print sum
 
 
-	M = num_edges * 1.0
+	M = num_edges * 2.0 #debug
 	for i in range(len(in_deg)):
 		in_pi[i]  = (in_deg[i]  / M) #changed to M for single direction probability
 		out_pi[i] = (out_deg[i] / M)
