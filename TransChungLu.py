@@ -35,9 +35,9 @@ def ChungLu():# We must set both FileName,edges):
 	
 	print "Setup Part 1 finished"
 	
-	num_edges = (2420765) 
+	num_edges = (2420765/2 - 1) 
 	#After that, we need to read in the file
-	File = open("twitter_combined2.txt","r")
+	File = open("TwitterRW1.50","r")
 	sum = 0
 	for line in File:
 		line    = line.strip()
@@ -50,6 +50,7 @@ def ChungLu():# We must set both FileName,edges):
 		
 	print sum
 
+	File.close()
 
 	M = num_edges * 1.0
 	for i in range(len(in_deg)):
@@ -148,7 +149,7 @@ def TransChungLu():
 	
 	num_edges = (2420765) 
 	#After that, we need to read in the file
-	File = open("twitter_combined2.txt","r")
+	File = open("TwitterRW1.5","r")
 	sum = 0
 	for line in File:
 		line    = line.strip()
@@ -161,6 +162,7 @@ def TransChungLu():
 		
 	print sum
 
+	File.close()
 
 	M = num_edges * 1.0
 	for i in range(len(in_deg)):
@@ -217,14 +219,14 @@ def TransChungLu():
 			PQ.enqueue(v_i, out_pi[v_i])
 			PQ.enqueue(v_j,  in_pi[v_j])
 			
-		#if (i % 10000 == 0):
-		print i,
+		if (i % 10000 == 0):
+			print i
 			
 	print "Begin Printing"
 	Print_Model(Edges)
 			
 def Print_Model(Set):
-	File = open("TCL","w")
+	File = open("TCL.25","w")
 	for item in Set:
 		File.write("%d %d\n" % (item[0],item[1]))
 		
@@ -253,7 +255,7 @@ def Node_Select(Pi, prob):
 
 
 def PrintChungLu(Edges):
-	File = open("CL","w")
+	File = open("CL1","w")
 	for item in Edges:
 		line = "%d %d\n" % (item[0], item[1])
 		File.write(line)
