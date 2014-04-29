@@ -115,7 +115,8 @@ def ChungLu():# We must set both FileName,edges):
 def TransChungLu():
 
 	PQ = PriorityQueue()
-	Edges = Set()
+	Edges = {} #edges is dict where TARGET nodes are keys, and source nodes are in a set associated with the key
+				# this allows the uniform selection to be done in constant time 
 
 	#(Edges, Time_Map, in_Pi, out_Pi, in_pi, out_pi, num_edges) = ChungLu()
 	
@@ -127,7 +128,11 @@ def TransChungLu():
 		Node = (int(line[0]),int(line[1]))
 		#Node = (v_i,v_j)
 		List.append(Node)
-		Edges.add(Node)			
+		try:
+			Edges[int(line[1])].add(int(line[0])) #add to set 
+		except:
+			Edges[int(line[1])]= {int(line[0])} #initialize set
+		#Edges.add(Node)			
 	
 	
 	in_deg  = []
@@ -199,42 +204,58 @@ def TransChungLu():
 			v_j = Node.data
 			del Node
 			
-		r = Bernouli(0.5) #NEED to change the "p" prob value here
+		r = Bernouli(0.6) #NEED to change the "p" prob value here
 		if r == 1:
-			v_k = Uniform_Pick(Edges, v_j)  #1 #need to fix this, using (v_k, v_j)
-			v_i = Uniform_Pick(Edges, v_k)
+			v_k = Uniform_Pick(Edges[v_j]) 
+			v_i = Uniform_Pick(Edges[v_k])  #establishes (vi,vk) -> (vk,vj)
 		else:
 			prob = random.random()
 			v_i = Node_Select(out_Pi, prob)
 		
 		if (v_i,v_j) not in Edges:
-			Edges.add((v_i,v_j))
+			try:
+				Edges[v_j].add(v_i) #add v_i to set of target nodes 
+			except:
+				Edges[v_j] = {v_i} #init set
+
+			#identify node to remove
 			Node = List.pop(0) #removes oldest element from Edges
-			Edges.remove(Node)
+
+			#remove edge from dictionary
+			temp1 = Node[0] #source node of edge to remove
+			temp2 = Node[1] #target node of edge to remove
+
+			#check if this is only edge of target node
+			if (len(Edges[temp2]) <= 1): 
+				#eliminate key and set
+				Edges.pop(temp2,None) 
+			else:
+				#eliminate target node from set
+				Edges[temp2].remove(temp1)
 
 			
 		else:
 			PQ.enqueue(v_i, out_pi[v_i])
 			PQ.enqueue(v_j,  in_pi[v_j])
 			
-		if (i % 100000 == 0):
-			print i,
+		if (i % 10000 == 0):
+			print i
 			
 	print "Begin Printing"
 	Print_Model(Edges)
 			
-def Print_Model(Set):
+def Print_Model(edgeDict):
 	File = open("FRDG_TCL","w")
-	for item in Set:
-		File.write("%d %d\n" % (item[0],item[1]))
+	#each key is a target node, with a set of source nodes
+	for targetNode, sourceSet in edgeDict:
+		for sourceNode in sourceSet:
+			File.write("%d %d\n" % (sourceNode,targetNode))
 		
 	File.close()
 			
-def Uniform_Pick(Set,v_j):
-	List = [x for (x,y) in Set if v_j==y] #may be faster than linear scan
-	
-	if len(List) != 0:
-		return (random.sample(List,1)[0])
+def Uniform_Pick(Set):	
+	if len(Set) != 0:
+		return (random.sample(Set,1)[0])
 	else:
 		return random.randint(1,81306)
 
