@@ -147,7 +147,7 @@ def TransChungLu():
 	
 	print "Setup Part 1 finished"
 	
-	num_edges = (1768149) 
+	num_edges = (2420765) 
 	#After that, we need to read in the file
 	File = open("twitter_combined2.txt","r")
 	sum = 0
@@ -163,7 +163,7 @@ def TransChungLu():
 	print sum
 
 
-	M = num_edges * 2.0 #debug
+	M = num_edges * 1.0 #debug
 	for i in range(len(in_deg)):
 		in_pi[i]  = (in_deg[i]  / M) #changed to M for single direction probability
 		out_pi[i] = (out_deg[i] / M)
