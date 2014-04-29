@@ -47,38 +47,10 @@ int main(int argc, char* argv[]) {
   //print basic diagnostics
   printf("Total number of nodes = %d \nTotal number of edges = %d\n\n", G->GetNodes(), G->GetEdges());
 
-  //reset timer
-  beginTime = time(NULL);
-
-  //get diameter of full graph
-  int FullDiam;
-  int NTestNodes = G->GetNodes() / 2; //number of random starting nodes for BFS search
-  FullDiam = GetBfsFullDiam(G, NTestNodes, true); //use BFS search to get diameter
-  printf("Full graph diameter = %d\n", FullDiam);
-
-  //get 90th percentile diameter of full graph
-  int EffDiam;
-  EffDiam = GetBfsFullDiam(G, NTestNodes, true); //use BFS search to get diameter
-  printf("90th percentile effective diameter = %d - ", EffDiam);
-
-  endTime = time(NULL);
-  seconds = difftime(endTime,beginTime);
-  printf("Diameters found in %.f seconds \n\n", seconds);
-
-  
   //find SCC
-  beginTime = time(NULL); //reset timer
   PNGraph SCC = GetMxScc(G); //returns the largest SCC as a graph object
   //print basic diagnostics
   printf("Largest SCC number of nodes = %d \nLargest SCC number of edges = %d\n", SCC->GetNodes(), SCC->GetEdges());
-  //get diameter of SCC
-  NTestNodes = SCC->GetNodes() / 2;
-  FullDiam = GetBfsFullDiam(SCC, NTestNodes, true); 
-  printf("SCC Diameter = %d\n", FullDiam);
-
-  endTime = time(NULL);
-  seconds = difftime(endTime,beginTime);
-  printf("SCC Stats found in %.f seconds \n\n", seconds);
 
   //get average clustering coefficient
   double avgClustCoeff;
@@ -127,6 +99,39 @@ int main(int argc, char* argv[]) {
   seconds = difftime(endTime,beginTime);
   printf("Hop plot generated in %.f seconds \n\n", seconds);
 
+
+  //reset timer
+  beginTime = time(NULL);
+  //get diameter of full graph
+  int FullDiam;
+  int NTestNodes = G->GetNodes() / 2; //number of random starting nodes for BFS search
+  FullDiam = GetBfsFullDiam(G, NTestNodes, true); //use BFS search to get diameter
+  printf("Full graph diameter = %d\n", FullDiam);
+  endTime = time(NULL);
+  seconds = difftime(endTime,beginTime);
+  printf("Full Diameter found in %.f seconds \n\n", seconds);
+
+  //reset timer
+  beginTime = time(NULL);
+  //get 90th percentile diameter of full graph
+  int EffDiam;
+  EffDiam = GetBfsFullDiam(G, NTestNodes, true); //use BFS search to get diameter
+  printf("90th percentile effective diameter = %d - ", EffDiam);
+
+  endTime = time(NULL);
+  seconds = difftime(endTime,beginTime);
+  printf("90th percentile diameter found in %.f seconds \n\n", seconds);
+
+  
+  //get diameter of SCC
+  beginTime = time(NULL); //reset timer
+  NTestNodes = SCC->GetNodes() / 2;
+  FullDiam = GetBfsFullDiam(SCC, NTestNodes, true); 
+  printf("SCC Diameter = %d\n", FullDiam);
+
+  endTime = time(NULL);
+  seconds = difftime(endTime,beginTime);
+  printf("SCC Diameter found in %.f seconds \n\n", seconds);
 
 
   return (0);

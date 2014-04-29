@@ -196,7 +196,8 @@ def TransChungLu():
 	
 	print "Begin Trans Chung Lu"
 	
-	for i in range(num_edges):
+	i = 0
+	while (len(List) > 0 and i < num_edges):
 		
 		if PQ.isEmpty():
 			prob = random.random()
@@ -242,6 +243,9 @@ def TransChungLu():
 			
 		if (i % 10000 == 0):
 			print i
+
+		i += 1
+	#EndWhile
 			
 	print "Begin Printing"
 	Print_Model(Edges)
