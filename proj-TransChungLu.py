@@ -182,8 +182,8 @@ def TransChungLu():
 		out_Pi[i] = sum2
 
 	print "Debugging - these should end with 1, each"
-	print in_Pi #DEBUG
-	print out_Pi #DEBUG
+	print in_Pi[len(in_Pi)-1] #DEBUG
+	print out_Pi[len(out_Pi)-1] #DEBUG
 	
 	print "Initialization Complete: Begin Trans Chung Lu"
 	
