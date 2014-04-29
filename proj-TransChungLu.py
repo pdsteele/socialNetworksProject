@@ -5,6 +5,7 @@ from PriorityQueue import *
 from sets import Set
 import sys
 import os
+import bisect
 
 
 def Bernouli(p):
@@ -119,7 +120,7 @@ def TransChungLu():
 	#(Edges, Time_Map, in_Pi, out_Pi, in_pi, out_pi, num_edges) = ChungLu()
 	
 	File = open("FRDG","r")
-	List = []
+	List = [] #tracks order of edge introduction 
 	for line in File:
 		line = line.strip()
 		line = line.split()
@@ -146,7 +147,7 @@ def TransChungLu():
 	
 	print "Setup Part 1 finished"
 	
-	num_edges = (2420765) 
+	num_edges = (1768149) 
 	#After that, we need to read in the file
 	File = open("twitter_combined2.txt","r")
 	sum = 0
@@ -177,9 +178,12 @@ def TransChungLu():
 	for i in range(len(in_pi)):
 		sum       += in_pi[i]
 		sum2      += out_pi[i]
-		in_Pi[i]  += sum
-		out_Pi[i] += sum2
+		in_Pi[i]  = sum
+		out_Pi[i] = sum2
 
+	print "Debugging - these should end with 1, each"
+	print in_Pi #DEBUG
+	print out_Pi #DEBUG
 	
 	print "Initialization Complete: Begin Trans Chung Lu"
 	
@@ -195,30 +199,26 @@ def TransChungLu():
 			v_j = Node.data
 			del Node
 			
-		r = Bernouli(0.6)#p) #NEED to change the "p" prob value here
+		r = Bernouli(0.5) #NEED to change the "p" prob value here
 		if r == 1:
 			v_k = Uniform_Pick(Edges, v_j)  #1 #need to fix this, using (v_k, v_j)
 			v_i = Uniform_Pick(Edges, v_k)
-		
 		else:
+			prob = random.random()
 			v_i = Node_Select(out_Pi, prob)
 		
-		j = 0
 		if (v_i,v_j) not in Edges:
 			Edges.add((v_i,v_j))
-			Node = List.pop(0)
-			#Time_Map[j] = (v_i,v_j)
-			#remove the elements from Time
+			Node = List.pop(0) #removes oldest element from Edges
 			Edges.remove(Node)
-			#del Time_Map[j-num_edges]
 
 			
 		else:
 			PQ.enqueue(v_i, out_pi[v_i])
 			PQ.enqueue(v_j,  in_pi[v_j])
 			
-		#if (i % 10000 == 0):
-		print i,
+		if (i % 100000 == 0):
+			print i,
 			
 	print "Begin Printing"
 	Print_Model(Edges)
@@ -231,25 +231,19 @@ def Print_Model(Set):
 	File.close()
 			
 def Uniform_Pick(Set,v_j):
-	List = []
-	for i in range(81306):
-		if (i, v_j) in Set:
-			List.append(i)
+	List = [x for (x,y) in Set if v_j==y] #may be faster than linear scan
 	
-	if len(List) > 1:
-		return List[random.randint(0,len(List)-1)]
-		
-	elif len(List) == 1:
-		return List[0]
-		
+	if len(List) != 0:
+		return (random.sample(List,1)[0])
 	else:
 		return random.randint(1,81306)
 
 def Node_Select(Pi, prob):
-	i = 0
-	while Pi[i] < prob:
-		i += 1
-	return (i+1) #the node number is the index number plus 1
+	return (bisect.bisect(Pi,prob)) #O(logn) instead of O(n) for each call
+	# i = 0
+	# while Pi[i] < prob:
+	# 	i += 1
+	# return (i+1) #the node number is the index number plus 1
 
 
 def PrintChungLu(Edges):

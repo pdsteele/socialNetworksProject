@@ -4,6 +4,7 @@
 #		which is less than ideal for this project 
 # first argument is input file name
 # second argument is output file base name
+# ONLY TESTED FOR PYTHON 3.3
 
 from scipy import sparse
 import numpy
