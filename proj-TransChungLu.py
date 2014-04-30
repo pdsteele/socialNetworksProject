@@ -118,7 +118,7 @@ def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
 	#expectation maxing alg for finding P
 	delta = .001
 	pLast = 0
-	pCurrent = .5 
+	pCurrent = .99
 
 	while(math.fabs(pLast - pCurrent) > delta):
 
@@ -187,9 +187,11 @@ def TransChungLu():
 		List.append(Node)
 		try:
 			Edges[int(line[1])].add(int(line[0])) #add to set 
-			Edges2[int(line[0])].add(int(line[1])) #add to set 
 		except:
 			Edges[int(line[1])]= {int(line[0])} #initialize set
+		try:
+			Edges2[int(line[0])].add(int(line[1])) #add to set 
+		except:
 			Edges2[int(line[0])] ={int(line[1])} #init set 
 		#Edges.add(Node)			
 	
