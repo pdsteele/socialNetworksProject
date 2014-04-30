@@ -150,10 +150,13 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
 
                     #get a target node  
                     v_j = random.sample(candidateSet,1)[0] #will throw error if v_i has no edges
-                    #CANNOT ENFORCE THAT V_J HAS OTHER EDGES
-                    # if (len(Edges[v_j]) + len(Edges2[v_j]) == 1): #if target has no edges, then retry 
-                    #     v_i = None
-                    #     v_j = None
+                    
+                    if (len(Edges2[v_j]) == 1): #if target has no other edges, then retry 
+                        
+                        if(len(Edges[v_j]) == 0): #throws an error also if empty
+                            v_i = None
+                            v_j = None
+                                  
                 except:
                     v_i = None
                     v_j = None
@@ -169,7 +172,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
             except:
                 pass
             try:
-                searchSet |= Edges2[v_j]
+                searchSet |= (Edges2[v_j] - {v_i}) #do not reselect vi 
             except:
                 pass
 
