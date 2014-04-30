@@ -320,7 +320,7 @@ def TransChungLu():
 			
 
 def Print_Model(edgeDict):
-	File = open("FRDG_TCL_1","w")
+	File = open("FRDG_TCL_2","w")
 	#each key is a target node, with a set of source nodes
 	for targetNode in edgeDict:
 		sourceSet = edgeDict[targetNode]
