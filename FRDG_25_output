@@ -302,3 +302,20 @@ Full graph has the following clustering coefficient distribution:
 	Degree: 1026.000000 | Clustering Coefficient: 0.000641
 	Degree: 1040.000000 | Clustering Coefficient: 0.000603
 	Degree: 1228.000000 | Clustering Coefficient: 0.000714
+Clustering Coefficient Distribution plotted in 1 seconds 
+
+In-degree distribution plotted in 0 seconds 
+
+Out-degree distribution plotted in 0 seconds 
+
+size 1665797
+Hop plot generated in 2 seconds 
+
+Full graph diameter = 20
+Full Diameter found in 400 seconds 
+
+90th percentile effective diameter = 20 - 90th percentile diameter found in 397 seconds 
+
+SCC Diameter = 19
+SCC Diameter found in 280 seconds 
+
