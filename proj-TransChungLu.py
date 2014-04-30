@@ -120,7 +120,7 @@ def learnP(Edges, in_Pi, out_Pi, in_pi, out_pi):
 	pLast = 0
 	pCurrent = .5 
 
-	while(math.abs(pLast - pCurrent) > delta):
+	while(math.fabs(pLast - pCurrent) > delta):
 
 		summation = 0
 		for i in range(10000):
