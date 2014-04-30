@@ -72,7 +72,7 @@ Example usage:
 ```
 python3 proj-fastRecipDirGraph.py inDeg_testName outDeg_testName recipDeg_testName testName 8 
 ```
-TransChungLu.py (written for python 2.7) generates a Chung-Lu graph, and performs the Transitive Chung Lu algorithm on top of that generated graph. This can be modified to perform TCL on an already generated graph (e.g., FRDG). Expect about 10 minutes for this to run on a 2 million edge graph. This also implements a learning algorithm for a parameter P (proportion of edges that should be generated as random triangles), but can be overriden with P=0 to generate a CL graph on top of the input graph. 
+TransChungLu.py (written for python 2.7) generates a Chung-Lu graph, and performs the Transitive Chung Lu algorithm on top of that generated graph. This can be modified to perform TCL on an already generated graph (e.g., FRDG). Be careful, this takes a long time to run (several hours).
 
 Example usage:
 ```
