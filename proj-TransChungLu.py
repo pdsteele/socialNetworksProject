@@ -140,13 +140,13 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
                     #create a candidate set of all nodes that connect to v_i
                     candidateSet = set()
                     try:
-                    	candidateSet |= Edges[v_i]
+                        candidateSet |= Edges[v_i]
                     except:
-                    	pass
+                        pass
                     try:
-                    	candidateSet |= Edges2[v_i]
+                        candidateSet |= Edges2[v_i]
                     except:
-                    	pass 
+                        pass 
 
                     #get a target node  
                     v_j = random.sample(candidateSet,1)[0] #will throw error if v_i has no edges
@@ -165,28 +165,28 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
 
             searchSet = set()
             try:
-            	searchSet |= Edges[v_j]
+                searchSet |= Edges[v_j]
             except:
-            	pass
+                pass
             try:
-            	searchSet |= Edges2[v_j]
+                searchSet |= Edges2[v_j]
             except:
-            	pass
+                pass
 
             #search each candidate node and see if it has any edges with v_i
-            #	if so, inc temp1
+            #   if so, inc temp1
             for v_k in candidateSet:
 
-            	#check for v_i in incoming and outgoing edges of v_k
-            	candidateSet = set()
-	            try:
-	            	candidateSet |= Edges[v_j]
-	            except:
-	            	pass
-	            try:
-	            	candidateSet |= Edges2[v_j]
-	            except:
-	            	pass
+                #check for v_i in incoming and outgoing edges of v_k
+                candidateSet = set()
+                try:
+                    candidateSet |= Edges[v_j]
+                except:
+                    pass
+                try:
+                    candidateSet |= Edges2[v_j]
+                except:
+                    pass
 
                 if(v_i in candidateSet):
                     temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
@@ -361,18 +361,18 @@ def TransChungLu():
             
 
 def Print_Model(edgeDict):
-	File = open("FRDG_TCL_2","w")
-	#each key is a target node, with a set of source nodes
-	for targetNode in edgeDict:
-		sourceSet = edgeDict[targetNode]
-		for sourceNode in sourceSet:
-			File.write("%d %d\n" % (int(sourceNode),int(targetNode)))
-			
-def Uniform_Pick(edgeDict, v_j):	
-	try:
-		return (random.sample(edgeDict[v_j],1)[0])
-	except:
-		return (random.randint(1,81306))
+    File = open("FRDG_TCL_2","w")
+    #each key is a target node, with a set of source nodes
+    for targetNode in edgeDict:
+        sourceSet = edgeDict[targetNode]
+        for sourceNode in sourceSet:
+            File.write("%d %d\n" % (int(sourceNode),int(targetNode)))
+            
+def Uniform_Pick(edgeDict, v_j):    
+    try:
+        return (random.sample(edgeDict[v_j],1)[0])
+    except:
+        return (random.randint(1,81306))
 
 
 def Node_Select(Pi, prob):
