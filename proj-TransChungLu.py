@@ -138,10 +138,16 @@ def learnP(Edges, in_Pi, out_Pi, in_pi, out_pi):
 
 			#calc P(eij|zij=1)
 			temp1 = 0
-			for v_k in Edges[v_j]:
-				if(v_i in Edges[v_k]):
-					temp1 += (1/something)*(1/something)
-			#EndFor
+			try:
+				for v_k in Edges[v_j]: #possible key error if no edges from vj
+					try:
+						if(v_i in Edges[v_k]): #possible key error if no edges from vk
+							temp1 += (1/something)*(1/something)
+					except:
+						pass
+				#EndFor
+			except:
+				pass
 			temp1 = pCurrent*temp1 
 
 			#calc P(eij|zij=0)
