@@ -142,7 +142,7 @@ def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
 				for v_k in Edges[v_j]: #possible key error if no edges from vj
 					try:
 						if(v_i in Edges[v_k]): #possible key error if no edges from vk
-							temp1 += (1/out_deg[v_j])*(1/in_deg[v_k])
+							temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
 					except:
 						pass
 				#EndFor
