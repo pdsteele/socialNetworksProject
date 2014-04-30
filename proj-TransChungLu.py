@@ -6,6 +6,7 @@ from sets import Set
 import sys
 import os
 import bisect
+import math
 
 
 def Bernouli(p):
@@ -112,12 +113,61 @@ def ChungLu():# We must set both FileName,edges):
 	
 	
 	#return Edges
+
+def learnP(Edges, in_Pi, out_Pi, in_pi, out_pi):
+	#expectation maxing alg for finding P
+	delta = .001
+	pLast = 0
+	pCurrent = .5 
+
+	while(math.abs(pLast - pCurrent) > delta):
+
+		summation = 0
+		for i in range(10000):
+
+			#draw source node at random until we find one with an edge
+			#   then select one of its edges at random 
+			v_i = None
+			while (v_i == None):
+				try:
+					v_i = Node_Select(out_Pi, random.random()) #get a source node
+					v_j = random.sample(Edges[v_i],1)[0] #get a target node
+				except:
+					pass
+			#EndWhile
+
+			#calc P(eij|zij=1)
+			temp1 = 0
+			for v_k in Edges[v_j]:
+				if(v_i in Edges[v_k]):
+					temp1 += (1/something)*(1/something)
+			#EndFor
+			temp1 = pCurrent*temp1 
+
+			#calc P(eij|zij=0)
+			temp2 = (1-pCurrent)*(out_pi[v_i])
+
+			summation += temp1/(temp1+temp2)
+		#EndFor
+		pLast = pCurrent
+		pCurrent = summation/10000
+		print(pCurrent) #debug
+	#EndWhile
+
+	return(pCurrent)
+
+
+
+
+
+
 	
 def TransChungLu():
 
 	PQ = PriorityQueue()
 	Edges = {} #edges is dict where TARGET nodes are keys, and source nodes are in a set associated with the key
 				# this allows the uniform selection to be done in constant time 
+	Edges2 = {} #second dict that is opposite of first for P learning alg
 
 	#(Edges, Time_Map, in_Pi, out_Pi, in_pi, out_pi, num_edges) = ChungLu()
 	
@@ -131,8 +181,10 @@ def TransChungLu():
 		List.append(Node)
 		try:
 			Edges[int(line[1])].add(int(line[0])) #add to set 
+			Edges2[int(line[0])].add(int(line[1])) #add to set 
 		except:
 			Edges[int(line[1])]= {int(line[0])} #initialize set
+			Edges2[int(line[0])] ={int(line[1])} #init set 
 		#Edges.add(Node)			
 	
 	
@@ -192,6 +244,13 @@ def TransChungLu():
 	print in_Pi[len(in_Pi)-1] #DEBUG
 	print out_Pi[len(out_Pi)-1] #DEBUG
 	
+	#need to learn correct P 
+	start = time.time()
+	p = learnP(Edges2, in_Pi, out_Pi, in_pi, out_pi)
+	print p
+	done = time.time()
+	delta = done - start
+
 	print "Initialization Complete: Begin Trans Chung Lu"
 	
 	print "Begin Trans Chung Lu"
@@ -207,7 +266,7 @@ def TransChungLu():
 			v_j = Node.data
 			del Node
 			
-		r = Bernouli(0.6) #NEED to change the "p" prob value here
+		r = Bernouli(p) #NEED to change the "p" prob value here
 		if r == 1:
 			v_k = Uniform_Pick(Edges, v_j) 
 			v_i = Uniform_Pick(Edges, v_k)  #establishes (vi,vk) -> (vk,vj)
