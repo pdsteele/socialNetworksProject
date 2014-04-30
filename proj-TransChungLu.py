@@ -114,7 +114,7 @@ def ChungLu():# We must set both FileName,edges):
 	
 	#return Edges
 
-def learnP(Edges, in_Pi, out_Pi, in_pi, out_pi):
+def learnP(Edges, in_Pi, out_Pi, in_deg, out_deg):
 	#expectation maxing alg for finding P
 	delta = .001
 	pLast = 0
@@ -142,7 +142,7 @@ def learnP(Edges, in_Pi, out_Pi, in_pi, out_pi):
 				for v_k in Edges[v_j]: #possible key error if no edges from vj
 					try:
 						if(v_i in Edges[v_k]): #possible key error if no edges from vk
-							temp1 += (1/something)*(1/something)
+							temp1 += (1/out_deg[v_j])*(1/in_deg[v_k])
 					except:
 						pass
 				#EndFor
@@ -252,10 +252,11 @@ def TransChungLu():
 	
 	#need to learn correct P 
 	start = time.time()
-	p = learnP(Edges2, in_Pi, out_Pi, in_pi, out_pi)
+	p = learnP(Edges2, in_Pi, out_Pi, in_deg, out_deg)
 	print p
 	done = time.time()
 	delta = done - start
+	print("Finding P took {0:f}".format(delta))
 
 	print "Initialization Complete: Begin Trans Chung Lu"
 	
