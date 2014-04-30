@@ -1,7 +1,9 @@
 socialNetworksProject
 =====================
 
-Class Project Comparing Graph Generation Performance using Twitter Data
+This is a class project comparing graph generation techniques and sub sampling techniques using twitter data. The original twitter data set is sub sampled at two levels (25% and 50%) using two different methodologies (random walk and random edge selection). Graphs are generated using the Chung-Lu, Transitive-Chung-Lu, and Fast-Reciprocal-Directed-Graph methodologies. Based on the results of these two experiments, a 50% random-edge dataset is used for generating a FRDG graph. 
+
+These graphs are all compared to the original twitter dataset based on in-degree distribution, out-degree distribution, reciprocal-degree distribution, clustering-coefficient distribution, hop plots, diameter (full and 90th percentile effective diameter), and strongest-connected-cluster size/diameter.  
 
 =====================
 
@@ -79,8 +81,17 @@ Example usage:
 python proj-TransChungLu.py
 ```
 
-convertTwitter.py and priorityQueue.py are helper files. The former was for reformatting the original twitter dataset, and the latter implements a priority queue class used for the TCL program.  
+convertTwitter.py and priorityQueue.py are helper files. The former was for reformatting the original twitter dataset, and the latter implements a priority queue class used for the TCL program.
+
+generatedComparison.R, bestsComparison.R, and subsampleComparison.R generate the plots found in the graphics directory. 
+
 
 =====================
 
 Thanks to the SNAP team (https://github.com/snap-stanford/snap) for an awesome library!
+
+Thanks for Sandia National Labs for the FRDG model paper (http://arxiv.org/pdf/1210.5288.pdf)! Special thanks to Tammy Kolda for helping clarify details necessary for the python implementation. 
+
+Thanks to Pfeiffer-LaFond-Moreno-Neville for the TCL paper (http://arxiv.org/pdf/1202.4805v1.pdf)! 
+
+Thanks to Anke van Zuylen for an awesome class on networks!  
