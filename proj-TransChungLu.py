@@ -113,9 +113,13 @@ def ChungLu():# We must set both FileName,edges):
     
     
     #return Edges
+#EndFunction
 
-def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
+def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
     #expectation maxing alg for finding P
+    # Edges is source -> targets dictionary
+    # Edges2 is target -> sources dictionary 
+
     delta = .001
     pLast = 0
     pCurrent = .99
@@ -123,6 +127,7 @@ def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
     while(math.fabs(pLast - pCurrent) > delta):
 
         summation = 0
+
         for i in range(10000):
             #draw source node at random until we find one with an edge (that also has at least an edge)
             #   then select one of its edges at random 
@@ -131,10 +136,24 @@ def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
             while (v_i == None or v_j == None):
                 try:
                     v_i = Node_Select(out_Pi, random.random()) #get a source node
-                    v_j = random.sample(Edges[v_i],1)[0] #get a target node
-                    if (len(Edges[v_j])==0): #if target has no edges, then retry 
-                        v_i = None
-                        v_j = None
+
+                    #create a candidate set of all nodes that connect to v_i
+                    candidateSet = set()
+                    try:
+                    	candidateSet |= Edges[v_i]
+                    except:
+                    	pass
+                    try:
+                    	candidateSet |= Edges2[v_i]
+                    except:
+                    	pass 
+
+                    #get a target node  
+                    v_j = random.sample(candidateSet,1)[0] #will throw error if v_i has no edges
+                    #CANNOT ENFORCE THAT V_J HAS OTHER EDGES
+                    # if (len(Edges[v_j]) + len(Edges2[v_j]) == 1): #if target has no edges, then retry 
+                    #     v_i = None
+                    #     v_j = None
                 except:
                     v_i = None
                     v_j = None
@@ -143,12 +162,34 @@ def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
 
             #calc P(eij|zij=1)
             temp1 = 0
-            for v_k in Edges[v_j]: 
-                try:
-                    if(v_i in Edges[v_k]): #possible key error if no edges from vk
-                        temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
-                except:
-                    pass
+
+            searchSet = set()
+            try:
+            	searchSet |= Edges[v_j]
+            except:
+            	pass
+            try:
+            	searchSet |= Edges2[v_j]
+            except:
+            	pass
+
+            #search each candidate node and see if it has any edges with v_i
+            #	if so, inc temp1
+            for v_k in candidateSet:
+
+            	#check for v_i in incoming and outgoing edges of v_k
+            	candidateSet = set()
+	            try:
+	            	candidateSet |= Edges[v_j]
+	            except:
+	            	pass
+	            try:
+	            	candidateSet |= Edges2[v_j]
+	            except:
+	            	pass
+
+                if(v_i in candidateSet):
+                    temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
             #EndFor
             
             temp1 = pCurrent*temp1 
@@ -164,7 +205,7 @@ def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
     #EndWhile
 
     return(pCurrent)
-
+#EndFunction
 
 
     
@@ -254,7 +295,7 @@ def TransChungLu():
     
     #need to learn correct P 
     start = time.time()
-    p = learnP(Edges2, out_pi, out_Pi, in_deg, out_deg)
+    p = learnP(Edges2, Edges, out_pi, out_Pi, in_deg, out_deg)
     print p
     done = time.time()
     delta = done - start
@@ -349,7 +390,7 @@ def PrintChungLu(Edges):
         File.write(line)
         
     File.close()
-
+#####################################Main Program##############################
 start = time.time()
 TransChungLu()
 done = time.time()
