@@ -115,14 +115,14 @@ def ChungLu():# We must set both FileName,edges):
     #return Edges
 #EndFunction
 
-def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
+def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
     #expectation maxing alg for finding P
     # Edges is source -> targets dictionary
     # Edges2 is target -> sources dictionary 
 
     delta = .001
     pLast = 0
-    pCurrent = .99
+    pCurrent = .5
 
     while(math.fabs(pLast - pCurrent) > delta):
 
@@ -198,7 +198,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg):
             temp1 = pCurrent*temp1 
 
             #calc P(eij|zij=0)
-            temp2 = (1-pCurrent)*(out_pi[v_i])
+            temp2 = (1-pCurrent)*(in_pi[v_i] + out_pi[v_i])
 
             summation += temp1/(temp1+temp2)
         #EndFor
@@ -298,7 +298,7 @@ def TransChungLu():
     
     #need to learn correct P 
     start = time.time()
-    p = learnP(Edges2, Edges, out_pi, out_Pi, in_deg, out_deg)
+    p = learnP(Edges2, Edges, out_pi, out_Pi, in_deg, out_deg, in_pi)
     print p
     done = time.time()
     delta = done - start
