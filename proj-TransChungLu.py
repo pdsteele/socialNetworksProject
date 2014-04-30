@@ -114,7 +114,7 @@ def ChungLu():# We must set both FileName,edges):
 	
 	#return Edges
 
-def learnP(Edges, in_Pi, out_Pi, in_deg, out_deg):
+def learnP(Edges, out_pi, out_Pi, in_deg, out_deg):
 	#expectation maxing alg for finding P
 	delta = .001
 	pLast = 0
@@ -252,7 +252,7 @@ def TransChungLu():
 	
 	#need to learn correct P 
 	start = time.time()
-	p = learnP(Edges2, in_Pi, out_Pi, in_deg, out_deg)
+	p = learnP(Edges2, out_pi, out_Pi, in_deg, out_deg)
 	print p
 	done = time.time()
 	delta = done - start
@@ -318,7 +318,7 @@ def TransChungLu():
 			
 
 def Print_Model(edgeDict):
-	File = open("FRDG_TCL","w")
+	File = open("FRDG_TCL_1","w")
 	#each key is a target node, with a set of source nodes
 	for targetNode in edgeDict:
 		sourceSet = edgeDict[targetNode]
