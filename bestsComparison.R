@@ -11,9 +11,13 @@ temp <- read.table("./clusteringDistros/ccf.TwitterRand1.50.tab", header=FALSE, 
 x3 <- temp[,1]
 y3 <- temp[,2]
 
-temp <- read.table("./clusteringDistros/ccf.FRDG_50.tab", header=FALSE, sep="\t", skip=4)
+temp <- read.table("./clusteringDistros/ccf.FRDG_25.tab", header=FALSE, sep="\t", skip=4)
 x4 <- temp[,1]
 y4 <- temp[,2]
+
+temp <- read.table("./clusteringDistros/ccf.FRDG_50.tab", header=FALSE, sep="\t", skip=4)
+x5 <- temp[,1]
+y5 <- temp[,2]
 
 
 plot(x1,y1, main="Clustering Coefficient Distribution Comparison", xlab="log(Node Degree)", ylab="Avg. Clustering Coefficient", log="x", col="red", type='l', xlim=c(1,10000))
@@ -24,7 +28,9 @@ lines(x3,y3, col="green")
 
 lines(x4,y4, col="blue")
 
-legend(x=500, y=.75, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 50%'), col=c('red','orange','green', 'blue'), lty=c(1,1,1,1))
+lines(x5,y5, col="purple")
+
+legend(x=500, y=.75, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 25%', 'FRDG from 50%'), col=c('red','orange','green', 'blue', 'purple'), lty=c(1,1,1,1,1))
 
 
 dev.off()
@@ -43,9 +49,13 @@ temp <- read.table("./HopPlots/hop.TwitterRand1.50.tab", header=FALSE, sep="\t",
 x3 <- temp[,1]
 y3 <- temp[,2]
 
-temp <- read.table("./HopPlots/hop.FRDG_50.tab", header=FALSE, sep="\t", skip=4)
+temp <- read.table("./HopPlots/hop.FRDG_25.tab", header=FALSE, sep="\t", skip=4)
 x4 <- temp[,1]
 y4 <- temp[,2]
+
+temp <- read.table("./HopPlots/hop.FRDG_50.tab", header=FALSE, sep="\t", skip=4)
+x5 <- temp[,1]
+y5 <- temp[,2]
 
 
 plot(x1,y1, main="Hop Plot Comparison", xlab="Number of Hops", ylab="Number of Pairs of Nodes", col="red", type='l', log="y")
@@ -56,8 +66,10 @@ lines(x3,y3, col="green")
 
 lines(x4,y4, col="blue")
 
+lines(x5,y5, col="purple")
 
-legend(x=7, y=100000000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 50%'), col=c('red','orange','green', 'blue'), lty=c(1,1,1,1))
+
+legend(x=7, y=100000000,  legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 25%', 'FRDG from 50%'), col=c('red','orange','green', 'blue', 'purple'), lty=c(1,1,1,1,1))
 
 
 dev.off()
@@ -75,10 +87,13 @@ temp <- read.table("./inDegreeDistros/indeg_TwitterRand1.50", header=FALSE, sep=
 x3 <- temp[,1]
 y3 <- temp[,2]
 
-temp <- read.table("./inDegreeDistros/indeg_FRDG_50", header=FALSE, sep=" ")
+temp <- read.table("./inDegreeDistros/indeg_FRDG_25", header=FALSE, sep=" ")
 x4 <- temp[,1]
 y4 <- temp[,2]
 
+temp <- read.table("./inDegreeDistros/indeg_FRDG_50", header=FALSE, sep=" ")
+x5 <- temp[,1]
+y5 <- temp[,2]
 
 plot(x1,y1, main="In-Degree Distribution Comparison", xlab="log(degree)", ylab="log(frequency)", log="xy", col="red", type='l', xlim=c(1,3000))
 
@@ -88,7 +103,9 @@ lines(x3,y3, col="green")
 
 lines(x4,y4, col="blue")
 
-legend(x=200, y=12000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 50%'), col=c('red','orange','green', 'blue'), lty=c(1,1,1,1))
+lines(x5,y5, col="purple")
+
+legend(x=200, y=12000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 25%', 'FRDG from 50%'), col=c('red','orange','green', 'blue', 'purple'), lty=c(1,1,1,1,1))
 
 dev.off()
 
@@ -107,9 +124,13 @@ temp <- read.table("./outDegreeDistros/outdeg_TwitterRand1.50", header=FALSE, se
 x3 <- temp[,1]
 y3 <- temp[,2]
 
-temp <- read.table("./outDegreeDistros/outdeg_FRDG_50", header=FALSE, sep=" ")
+temp <- read.table("./outDegreeDistros/outdeg_FRDG_25", header=FALSE, sep=" ")
 x4 <- temp[,1]
 y4 <- temp[,2]
+
+temp <- read.table("./outDegreeDistros/outdeg_FRDG_50", header=FALSE, sep=" ")
+x5 <- temp[,1]
+y5 <- temp[,2]
 
 
 plot(x1,y1, main="Out-Degree Distribution Comparison", xlab="log(degree)", ylab="log(frequency)", log="xy", col="red", type='l', xlim=c(1,3000))
@@ -120,7 +141,9 @@ lines(x3,y3, col="green")
 
 lines(x4,y4, col="blue")
 
-legend(x=200, y=12000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 50%'), col=c('red','orange','green', 'blue'), lty=c(1,1,1,1))
+lines(x5,y5, col="purple")
+
+legend(x=200, y=12000,  legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 25%', 'FRDG from 50%'), col=c('red','orange','green', 'blue', 'purple'), lty=c(1,1,1,1,1))
 
 dev.off()
 
@@ -140,9 +163,13 @@ temp <- read.table("./recipDegreeDistros/recipdeg_TwitterRand1.50", header=FALSE
 x3 <- temp[,1]
 y3 <- temp[,2]
 
-temp <- read.table("./recipDegreeDistros/recipdeg_FRDG_50", header=FALSE, sep=" ")
+temp <- read.table("./recipDegreeDistros/recipdeg_FRDG_25", header=FALSE, sep=" ")
 x4 <- temp[,1]
 y4 <- temp[,2]
+
+temp <- read.table("./recipDegreeDistros/recipdeg_FRDG_50", header=FALSE, sep=" ")
+x5 <- temp[,1]
+y5 <- temp[,2]
 
 plot(x1,y1, main="Reciprocal-Degree Distribution Comparison", xlab="log(degree)", ylab="log(frequency)", log="xy", col="red", type='l', xlim=c(1,3000))
 
@@ -152,8 +179,9 @@ lines(x3,y3, col="green")
 
 lines(x4,y4, col="blue")
 
-legend(x=200, y=12000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 50%'), col=c('red','orange','green', 'blue'), lty=c(1,1,1,1))
+lines(x5,y5, col="purple")
 
+legend(x=200, y=12000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 25%', 'FRDG from 50%'), col=c('red','orange','green', 'blue', 'purple'), lty=c(1,1,1,1,1))
 
 dev.off()
 
