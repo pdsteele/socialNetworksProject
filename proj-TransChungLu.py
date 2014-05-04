@@ -223,8 +223,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
     
 def TransChungLu():
 
-    inPQ = PriorityQueue()
-    outPQ = PriorityQueue()
+    Q = PriorityQueue()
     Edges = {} #edges is dict where TARGET nodes are keys, and source nodes are in a set associated with the key
                 # this allows the uniform selection to be done in constant time 
     Edges2 = {} #second dict that is opposite of first - ONLY for P learning alg
@@ -320,12 +319,28 @@ def TransChungLu():
     i = 0
     while (len(List) > 0 and i < num_edges):
         
-        if inPQ.isEmpty() and outPQ.isEmpty():
-            #select target
-            prob = random.random()
-            v_j  = Node_Select(in_Pi, prob)
+        #select source or target randomly or from queue
+        if Q.isEmpty():
+            #select whether drawing from in or out distro
+            d = Bernouli(.5) #coin toss
+            prob = random.random() #for selecting node
+            if d == 0:
+                nodeType = 0 #source node
+                #select source
+                v_i  = Node_Select(out_Pi, prob)
+            else: 
+                nodeType = 1 #target node
+                #select target
+                v_j = Node_Select(in_Pi, prob)
+        else:
+            temp  = Q.dequeue()
+            node = temp.data[0]
+            nodeType = temp.data[1] #0 if source node, 1 if target node
+            del temp
+        #EndIf
 
-            #select source
+        if nodeType == 1: #target selected
+            #then select source
             r = Bernouli(p) #NEED to change the "p" prob value here
             if r == 1:
                 v_k = Uniform_Pick(Edges, v_j) 
@@ -333,15 +348,18 @@ def TransChungLu():
             else:
                 prob = random.random()
                 v_i = Node_Select(out_Pi, prob)
-        else:
-            Node  = outPQ.dequeue()
-            v_i = Node.data
-            del Node
+        else: #source selected
+            #then select target
+            r = Bernouli(p) #NEED to change the "p" prob value here
+            if r == 1:
+                v_k = Uniform_Pick(Edges2, v_i) #establishes (vi,vk)
+                v_j = Uniform_Pick(Edges2, v_k)  #establishes (vk,vj)
+            else:
+                prob = random.random()
+                v_j = Node_Select(in_Pi, prob)
 
-            Node  = inPQ.dequeue()
-            v_j = Node.data
-            del Node
-        
+
+        #get ready to add to set (or queue it up)
         try:
             setExists = len(Edges[v_j]) > 1 #true or throws exception
             addToSet = False
@@ -356,8 +374,8 @@ def TransChungLu():
         if setExists == True:
             #if (v_i, v_j) is already an edge
             if v_i in Edges[v_j]:
-                outPQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
-                inPQ.enqueue(v_j,  in_pi[v_j-1])  
+                Q.enqueue((v_i,0), out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
+                Q.enqueue((v_j,1), in_pi[v_j-1]) #third param: 0 for source node, 1 for target  
             else: #add it as an edge if not
                 Edges[v_j].add(v_i)
                 addToSet = True
@@ -378,9 +396,11 @@ def TransChungLu():
             if (len(Edges[temp2]) <= 1): 
                 #eliminate key and set
                 Edges.pop(temp2,None) 
+                Edges2.pop(temp1,None)
             else:
                 #eliminate target node from set
                 Edges[temp2].remove(temp1)
+                Edges2[temp1].remove(temp2)
             
             
         if (i % 10000 == 0):
