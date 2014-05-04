@@ -135,7 +135,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
             v_j = None
             while (v_i == None or v_j == None):
                 try:
-                    v_i = Node_Select(out_Pi, random.random()) #get a source node
+                    v_i = Node_Select(out_Pi, random.random()) #get a source node at random
 
                     #create a candidate set of all nodes that connect to v_i
                     candidateSet = set()
@@ -160,7 +160,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
                 except:
                     v_i = None
                     v_j = None
-                    pass
+                    #pass
             #EndWhile
 
             #calc P(eij|zij=1)
@@ -198,7 +198,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
             temp1 = pCurrent*temp1 
 
             #calc P(eij|zij=0)
-            temp2 = (1-pCurrent)*(in_pi[v_i-1]/2 + out_pi[v_i-1]/2)
+            temp2 = (1-pCurrent)*(in_pi[v_i-1] +out_pi[v_i-1]) 
 
             summation += temp1/(temp1+temp2)
         #EndFor
@@ -351,7 +351,7 @@ def TransChungLu():
             
         else:
             #PQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
-            PQ.enqueue(v_j,  in_pi[v_j])
+            PQ.enqueue(v_j,  in_pi[v_j-1])
             
         if (i % 10000 == 0):
             print i
