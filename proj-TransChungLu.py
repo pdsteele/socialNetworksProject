@@ -198,7 +198,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
             temp1 = pCurrent*temp1 
 
             #calc P(eij|zij=0)
-            temp2 = (1-pCurrent)*(in_pi[v_i-1] + out_pi[v_i-1])
+            temp2 = (1-pCurrent)*(in_pi[v_i-1]/2 + out_pi[v_i-1]/2)
 
             summation += temp1/(temp1+temp2)
         #EndFor
