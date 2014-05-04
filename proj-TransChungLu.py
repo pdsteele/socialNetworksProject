@@ -192,7 +192,11 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
                     pass
 
                 if(v_i in candidateSet):
-                    temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
+                    try:
+                        temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
+                    except:
+                        print(v_j)
+                        print(v_k)
             #EndFor
             
             temp1 = pCurrent*temp1 
