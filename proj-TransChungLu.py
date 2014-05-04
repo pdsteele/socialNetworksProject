@@ -350,8 +350,8 @@ def TransChungLu():
 
             
         else:
-            PQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
-            #PQ.enqueue(v_j,  in_pi[v_j])
+            #PQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
+            PQ.enqueue(v_j,  in_pi[v_j])
             
         if (i % 10000 == 0):
             print i
