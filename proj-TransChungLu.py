@@ -74,36 +74,41 @@ def ChungLu():# We must set both FileName,edges):
         
 
     Edges    = []
-    inQ        = Queue()
-    outQ = Queue()
+    Q  = Queue()
+    
     
     print "Initialization Complete: Begin Chung Lu"
     
     #Edge Tuple has format (v_i, v_j, time/order_num)
     for i in range(num_edges):
         
-        if inQ.isEmpty() and outQ.isEmpty():
+        if Q.isEmpty():
             prob = random.random()
             v_j  = Node_Select(in_Pi, prob)
 
             prob = random.random()
             v_i  = Node_Select(out_Pi, prob)
         else:
-            Node = inQ.dequeue()
-            v_j  = Node.data
+            Node = Q.dequeue()
+            temp1 = Node.data[0] #node number
+            temp2 = Node.data[1] #node type
             del Node
 
-            Node = outQ.dequeue()
-            v_i  = Node.data
-            del Node
-        
+            if temp2 = 0: #0 is source node, 1 is target
+                v_i = temp2
+                prob = random.random()
+                v_j  = Node_Select(in_Pi, prob)
+            else:
+                v_j = temp2
+                prob = random.random()
+                v_i  = Node_Select(in_Pi, prob)
         
         if (v_i,v_j) not in Edges:
             Edges.append((v_i,v_j)) #append as tuple so list is in order of generation 
             
         else:
-            outQ.enqueue(v_i)
-            inQ.enqueue(v_j)
+            Q.enqueue((v_i,0)) #0 is for source node
+            Q.enqueue((v_j,1)) #1 is for target node 
             
         if (i % 10000 == 0):
             print (i/10000)
