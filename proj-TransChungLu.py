@@ -336,18 +336,32 @@ def TransChungLu():
             Node  = inPQ.dequeue()
             v_j = Node.data
             del Node
-            
         
-        #if (v_i, v_j) is already an edge
-        if v_i in Edges[v_j]:
-            outPQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
-            inPQ.enqueue(v_j,  in_pi[v_j-1]) 
-        else: #add it as an edge if not
-            try:
-                Edges[v_j].add(v_i) #add v_i to set of target nodes 
-            except:
-                Edges[v_j] = {v_i} #init set
+        try:
+            setExists = len(Edges[v_j]) > 1 #true or throws exception
+            addToSet = False
+        except:
+            setExists = False
+            addToSet = True
+        
+        #if set does not exist, then add as edge
+        # if set does exist, check if edge exists and queue if it does 
+        #    add edge if it does not exist in set
 
+        if setExists == True:
+            #if (v_i, v_j) is already an edge
+            if v_i in Edges[v_j]:
+                outPQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
+                inPQ.enqueue(v_j,  in_pi[v_j-1])  
+            else: #add it as an edge if not
+                Edges[v_j].add(v_i)
+                addToSet = True
+        else:
+            Edges[v_j] = {v_i} #init set
+        #EndIf
+
+        #eliminate oldest node if added to set
+        if addToSet = True:
             #identify node to remove
             Node = List.pop(0) #removes oldest element from Edges list (in order by generation time)
 
@@ -362,9 +376,6 @@ def TransChungLu():
             else:
                 #eliminate target node from set
                 Edges[temp2].remove(temp1)
-
-            
-        else:
             
             
         if (i % 10000 == 0):
