@@ -192,17 +192,13 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
                     pass
 
                 if(v_i in candidateSet):
-                    try:
-                        temp1 += (1/(in_deg[v_j]+out_deg[v_j]))*(1/(in_deg[v_k]+out_deg[v_k]))
-                    except:
-                        print(v_j)
-                        print(v_k)
+                    temp1 += (1/(in_deg[v_j-1]+out_deg[v_j-1]))*(1/(in_deg[v_k-1]+out_deg[v_k-1]))
             #EndFor
             
             temp1 = pCurrent*temp1 
 
             #calc P(eij|zij=0)
-            temp2 = (1-pCurrent)*(in_pi[v_i] + out_pi[v_i])
+            temp2 = (1-pCurrent)*(in_pi[v_i-1] + out_pi[v_i-1])
 
             summation += temp1/(temp1+temp2)
         #EndFor
@@ -250,7 +246,7 @@ def TransChungLu():
     out_pi  = []
     in_Pi   = []
     out_Pi  = []
-    for i in range(81306):
+    for i in range(81307):
         in_deg.append(0)
         out_deg.append(0)
         in_pi.append(0)
@@ -354,7 +350,7 @@ def TransChungLu():
 
             
         else:
-            PQ.enqueue(v_i, out_pi[v_i])
+            PQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
             #PQ.enqueue(v_j,  in_pi[v_j])
             
         if (i % 10000 == 0):
