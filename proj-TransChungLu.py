@@ -183,11 +183,11 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
                 #check for v_i in incoming and outgoing edges of v_k
                 candidateSet = set()
                 try:
-                    candidateSet |= Edges[v_j]
+                    candidateSet |= Edges[v_k]
                 except:
                     pass
                 try:
-                    candidateSet |= Edges2[v_j]
+                    candidateSet |= Edges2[v_k]
                 except:
                     pass
 
@@ -246,7 +246,7 @@ def TransChungLu():
     out_pi  = []
     in_Pi   = []
     out_Pi  = []
-    for i in range(81307):
+    for i in range(81306):
         in_deg.append(0)
         out_deg.append(0)
         in_pi.append(0)
