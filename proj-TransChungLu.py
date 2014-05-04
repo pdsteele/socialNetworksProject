@@ -37,9 +37,9 @@ def ChungLu():# We must set both FileName,edges):
     
     print "Setup Part 1 finished"
     
-    num_edges = (2420765/2 - 1) 
+    num_edges = (2420765) 
     #After that, we need to read in the file
-    File = open("TwitterRW1.50","r")
+    File = open("twitter_combined2.txt","r")
     sum = 0
     for line in File:
         line    = line.strip()
@@ -73,40 +73,44 @@ def ChungLu():# We must set both FileName,edges):
         out_Pi[i] += sum2
         
 
-    Edges    = Set()
-    Time_Map = {}
-    Q        = Queue()
+    Edges    = []
+    inQ        = Queue()
+    outQ = Queue()
     
     print "Initialization Complete: Begin Chung Lu"
     
     #Edge Tuple has format (v_i, v_j, time/order_num)
     for i in range(num_edges):
         
-        if Q.isEmpty():
+        if inQ.isEmpty() and outQ.isEmpty():
             prob = random.random()
             v_j  = Node_Select(in_Pi, prob)
+
+            prob = random.random()
+            v_i  = Node_Select(out_Pi, prob)
         else:
-            Node = Q.dequeue()
+            Node = inQ.dequeue()
             v_j  = Node.data
             del Node
+
+            Node = outQ.dequeue()
+            v_i  = Node.data
+            del Node
         
-        prob = random.random()
-        v_i  = Node_Select(out_Pi, prob)
         
         if (v_i,v_j) not in Edges:
-            Edges.add((v_i,v_j))
-            Time_Map[i] = (v_i,v_j)
+            Edges.append((v_i,v_j)) #append as tuple so list is in order of generation 
             
         else:
-            Q.enqueue(v_i)
-            Q.enqueue(v_j)
+            outQ.enqueue(v_i)
+            inQ.enqueue(v_j)
             
         if (i % 10000 == 0):
             print (i/10000)
             
     PrintChungLu(Edges)
             
-    return (Edges, Time_Map, in_Pi, out_Pi, in_pi, out_pi, num_edges)
+    return ()
         
     
     # Add Edges by including a time step for the TCL!!!!!
@@ -198,7 +202,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
             temp1 = pCurrent*temp1 
 
             #calc P(eij|zij=0)
-            temp2 = (1-pCurrent)*(in_pi[v_i-1] +out_pi[v_i-1]) 
+            temp2 = (1-pCurrent)*(in_pi[v_i-1]+out_pi[v_i-1]) 
 
             summation += temp1/(temp1+temp2)
         #EndFor
@@ -214,14 +218,14 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
     
 def TransChungLu():
 
-    PQ = PriorityQueue()
+    inPQ = PriorityQueue()
+    outPQ = PriorityQueue()
     Edges = {} #edges is dict where TARGET nodes are keys, and source nodes are in a set associated with the key
                 # this allows the uniform selection to be done in constant time 
-    Edges2 = {} #second dict that is opposite of first for P learning alg
+    Edges2 = {} #second dict that is opposite of first - ONLY for P learning alg
 
-    #(Edges, Time_Map, in_Pi, out_Pi, in_pi, out_pi, num_edges) = ChungLu()
     
-    File = open("FRDG","r")
+    File = open("CL","r")
     List = [] #tracks order of edge introduction 
     for line in File:
         line = line.strip()
@@ -311,30 +315,41 @@ def TransChungLu():
     i = 0
     while (len(List) > 0 and i < num_edges):
         
-        if PQ.isEmpty():
+        if inPQ.isEmpty() and outPQ.isEmpty():
+            #select target
             prob = random.random()
             v_j  = Node_Select(in_Pi, prob)
+
+            #select source
+            r = Bernouli(p) #NEED to change the "p" prob value here
+            if r == 1:
+                v_k = Uniform_Pick(Edges, v_j) 
+                v_i = Uniform_Pick(Edges, v_k)  #establishes (vi,vk) -> (vk,vj)
+            else:
+                prob = random.random()
+                v_i = Node_Select(out_Pi, prob)
         else:
-            Node  = PQ.dequeue()
+            Node  = outPQ.dequeue()
+            v_i = Node.data
+            del Node
+
+            Node  = inPQ.dequeue()
             v_j = Node.data
             del Node
             
-        r = Bernouli(p) #NEED to change the "p" prob value here
-        if r == 1:
-            v_k = Uniform_Pick(Edges, v_j) 
-            v_i = Uniform_Pick(Edges, v_k)  #establishes (vi,vk) -> (vk,vj)
-        else:
-            prob = random.random()
-            v_i = Node_Select(out_Pi, prob)
         
-        if (v_i,v_j) not in Edges:
+        #if (v_i, v_j) is already an edge
+        if v_i in Edges[v_j]:
+            outPQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
+            inPQ.enqueue(v_j,  in_pi[v_j-1]) 
+        else: #add it as an edge if not
             try:
                 Edges[v_j].add(v_i) #add v_i to set of target nodes 
             except:
                 Edges[v_j] = {v_i} #init set
 
             #identify node to remove
-            Node = List.pop(0) #removes oldest element from Edges
+            Node = List.pop(0) #removes oldest element from Edges list (in order by generation time)
 
             #remove edge from dictionary
             temp1 = Node[0] #source node of edge to remove
@@ -350,8 +365,7 @@ def TransChungLu():
 
             
         else:
-            #PQ.enqueue(v_i, out_pi[v_i-1]) #outpi is numbered from 0 to n-1, not 1 to n 
-            PQ.enqueue(v_j,  in_pi[v_j-1])
+            
             
         if (i % 10000 == 0):
             print i
@@ -364,7 +378,7 @@ def TransChungLu():
             
 
 def Print_Model(edgeDict):
-    File = open("FRDG_TCL_3","w")
+    File = open("TCL","w")
     #each key is a target node, with a set of source nodes
     for targetNode in edgeDict:
         sourceSet = edgeDict[targetNode]
@@ -387,13 +401,20 @@ def Node_Select(Pi, prob):
 
 
 def PrintChungLu(Edges):
-    File = open("CL1","w")
+    #expects a list of tuples (v_i, v_j)
+    File = open("CL","w")
     for item in Edges:
         line = "%d %d\n" % (item[0], item[1])
         File.write(line)
         
     File.close()
 #####################################Main Program##############################
+start = time.time()
+ChungLu()
+done = time.time()
+delta = done - start
+print("This program took {0:f}".format(delta))
+
 start = time.time()
 TransChungLu()
 done = time.time()
