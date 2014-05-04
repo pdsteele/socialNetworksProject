@@ -178,7 +178,7 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
 
             #search each candidate node and see if it has any edges with v_i
             #   if so, inc temp1
-            for v_k in candidateSet:
+            for v_k in searchSet:
 
                 #check for v_i in incoming and outgoing edges of v_k
                 candidateSet = set()
@@ -351,7 +351,7 @@ def TransChungLu():
             
         else:
             PQ.enqueue(v_i, out_pi[v_i])
-            PQ.enqueue(v_j,  in_pi[v_j])
+            #PQ.enqueue(v_j,  in_pi[v_j])
             
         if (i % 10000 == 0):
             print i
@@ -364,7 +364,7 @@ def TransChungLu():
             
 
 def Print_Model(edgeDict):
-    File = open("FRDG_TCL_2","w")
+    File = open("FRDG_TCL_3","w")
     #each key is a target node, with a set of source nodes
     for targetNode in edgeDict:
         sourceSet = edgeDict[targetNode]
