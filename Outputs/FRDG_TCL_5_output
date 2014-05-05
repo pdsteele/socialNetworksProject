@@ -599,4 +599,34 @@ Full graph has the following clustering coefficient distribution:
 	Degree: 1061.000000 | Clustering Coefficient: 0.001453
 	Degree: 1066.000000 | Clustering Coefficient: 0.001938
 	Degree: 1069.000000 | Clustering Coefficient: 0.001379
-	Degree: 1093.000000 | Clustering Coe
+	Degree: 1093.000000 | Clustering Coefficient: 0.001384
+	Degree: 1214.000000 | Clustering Coefficient: 0.001889
+	Degree: 1220.000000 | Clustering Coefficient: 0.001520
+	Degree: 1239.000000 | Clustering Coefficient: 0.001757
+	Degree: 1294.000000 | Clustering Coefficient: 0.001615
+	Degree: 1416.000000 | Clustering Coefficient: 0.002114
+	Degree: 1625.000000 | Clustering Coefficient: 0.001651
+	Degree: 1708.000000 | Clustering Coefficient: 0.001559
+	Degree: 1845.000000 | Clustering Coefficient: 0.001938
+	Degree: 1858.000000 | Clustering Coefficient: 0.001489
+	Degree: 2153.000000 | Clustering Coefficient: 0.001753
+	Degree: 2187.000000 | Clustering Coefficient: 0.001849
+	Degree: 2424.000000 | Clustering Coefficient: 0.001565
+	Degree: 2547.000000 | Clustering Coefficient: 0.001531
+Clustering Coefficient Distribution plotted in 10 seconds 
+
+In-degree distribution plotted in 0 seconds 
+
+Out-degree distribution plotted in 1 seconds 
+
+size 1768229
+Hop plot generated in 3 seconds 
+
+Full graph diameter = 15
+Full Diameter found in 1319 seconds 
+
+90th percentile effective diameter = 15 - 90th percentile diameter found in 1317 seconds 
+
+SCC Diameter = 15
+SCC Diameter found in 1154 seconds 
+

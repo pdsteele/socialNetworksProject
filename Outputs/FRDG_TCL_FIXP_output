@@ -895,4 +895,87 @@ Full graph has the following clustering coefficient distribution:
 	Degree: 1639.000000 | Clustering Coefficient: 0.021153
 	Degree: 1644.000000 | Clustering Coefficient: 0.021500
 	Degree: 1650.000000 | Clustering Coefficient: 0.018525
-	Degree: 1653.000000 
+	Degree: 1653.000000 | Clustering Coefficient: 0.019988
+	Degree: 1656.000000 | Clustering Coefficient: 0.018309
+	Degree: 1660.000000 | Clustering Coefficient: 0.015646
+	Degree: 1666.000000 | Clustering Coefficient: 0.018713
+	Degree: 1680.000000 | Clustering Coefficient: 0.020530
+	Degree: 1681.000000 | Clustering Coefficient: 0.019334
+	Degree: 1692.000000 | Clustering Coefficient: 0.019179
+	Degree: 1710.000000 | Clustering Coefficient: 0.017847
+	Degree: 1712.000000 | Clustering Coefficient: 0.018046
+	Degree: 1719.000000 | Clustering Coefficient: 0.020423
+	Degree: 1728.000000 | Clustering Coefficient: 0.020382
+	Degree: 1739.000000 | Clustering Coefficient: 0.019223
+	Degree: 1753.000000 | Clustering Coefficient: 0.019833
+	Degree: 1755.000000 | Clustering Coefficient: 0.018620
+	Degree: 1770.000000 | Clustering Coefficient: 0.018242
+	Degree: 1827.000000 | Clustering Coefficient: 0.015413
+	Degree: 1834.000000 | Clustering Coefficient: 0.019768
+	Degree: 1853.000000 | Clustering Coefficient: 0.019615
+	Degree: 1862.000000 | Clustering Coefficient: 0.018439
+	Degree: 1883.000000 | Clustering Coefficient: 0.019518
+	Degree: 1887.000000 | Clustering Coefficient: 0.017571
+	Degree: 1893.000000 | Clustering Coefficient: 0.017809
+	Degree: 1959.000000 | Clustering Coefficient: 0.019887
+	Degree: 1972.000000 | Clustering Coefficient: 0.016853
+	Degree: 1975.000000 | Clustering Coefficient: 0.018250
+	Degree: 2002.000000 | Clustering Coefficient: 0.015794
+	Degree: 2008.000000 | Clustering Coefficient: 0.019704
+	Degree: 2011.000000 | Clustering Coefficient: 0.017265
+	Degree: 2016.000000 | Clustering Coefficient: 0.016105
+	Degree: 2022.000000 | Clustering Coefficient: 0.017297
+	Degree: 2030.000000 | Clustering Coefficient: 0.018796
+	Degree: 2034.000000 | Clustering Coefficient: 0.017566
+	Degree: 2037.000000 | Clustering Coefficient: 0.016940
+	Degree: 2047.000000 | Clustering Coefficient: 0.018715
+	Degree: 2049.000000 | Clustering Coefficient: 0.017720
+	Degree: 2052.000000 | Clustering Coefficient: 0.016222
+	Degree: 2059.000000 | Clustering Coefficient: 0.017425
+	Degree: 2096.000000 | Clustering Coefficient: 0.016059
+	Degree: 2116.000000 | Clustering Coefficient: 0.018911
+	Degree: 2136.000000 | Clustering Coefficient: 0.018266
+	Degree: 2156.000000 | Clustering Coefficient: 0.017943
+	Degree: 2161.000000 | Clustering Coefficient: 0.019223
+	Degree: 2191.000000 | Clustering Coefficient: 0.015706
+	Degree: 2240.000000 | Clustering Coefficient: 0.017354
+	Degree: 2256.000000 | Clustering Coefficient: 0.016333
+	Degree: 2371.000000 | Clustering Coefficient: 0.012550
+	Degree: 2380.000000 | Clustering Coefficient: 0.012151
+	Degree: 2405.000000 | Clustering Coefficient: 0.016863
+	Degree: 2407.000000 | Clustering Coefficient: 0.016952
+	Degree: 2409.000000 | Clustering Coefficient: 0.014315
+	Degree: 2465.000000 | Clustering Coefficient: 0.017515
+	Degree: 2477.000000 | Clustering Coefficient: 0.017010
+	Degree: 2490.000000 | Clustering Coefficient: 0.017274
+	Degree: 2568.000000 | Clustering Coefficient: 0.015911
+	Degree: 2639.000000 | Clustering Coefficient: 0.019003
+	Degree: 2696.000000 | Clustering Coefficient: 0.012465
+	Degree: 2766.000000 | Clustering Coefficient: 0.016486
+	Degree: 2832.000000 | Clustering Coefficient: 0.016337
+	Degree: 3052.000000 | Clustering Coefficient: 0.015497
+	Degree: 3069.000000 | Clustering Coefficient: 0.014635
+	Degree: 3095.000000 | Clustering Coefficient: 0.014285
+	Degree: 3516.000000 | Clustering Coefficient: 0.014095
+	Degree: 4180.000000 | Clustering Coefficient: 0.012481
+	Degree: 4250.000000 | Clustering Coefficient: 0.011024
+	Degree: 4396.000000 | Clustering Coefficient: 0.011726
+	Degree: 4815.000000 | Clustering Coefficient: 0.008357
+	Degree: 5681.000000 | Clustering Coefficient: 0.010423
+Clustering Coefficient Distribution plotted in 26 seconds 
+
+In-degree distribution plotted in 0 seconds 
+
+Out-degree distribution plotted in 0 seconds 
+
+size 1766755
+Hop plot generated in 3 seconds 
+
+Full graph diameter = 12
+Full Diameter found in 1307 seconds 
+
+90th percentile effective diameter = 12 - 90th percentile diameter found in 1308 seconds 
+
+SCC Diameter = 12
+SCC Diameter found in 1191 seconds 
+
