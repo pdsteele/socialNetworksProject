@@ -319,7 +319,7 @@ def TransChungLu():
     
     #need to learn correct P 
     start = time.time()
-    p = .6 #learnP(Edges2, Edges, out_pi, out_Pi, in_deg, out_deg, in_pi)
+    p = learnP(Edges2, Edges, out_pi, out_Pi, in_deg, out_deg, in_pi)
     print p
     done = time.time()
     delta = done - start
@@ -430,7 +430,7 @@ def TransChungLu():
             
 
 def Print_Model(edgeDict):
-    File = open("FRDG_TCL_FIXP","w")
+    File = open("FRDG_TCL_5","w")
     #each key is a target node, with a set of source nodes
     for targetNode in edgeDict:
         sourceSet = edgeDict[targetNode]
