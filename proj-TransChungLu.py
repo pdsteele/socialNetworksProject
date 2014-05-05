@@ -73,13 +73,14 @@ def ChungLu():# We must set both FileName,edges):
         out_Pi[i] += sum2
         
 
-    Edges    = []
+    Edges    = set() #set used for tracking membership
+    Edges2 = [] #list used for tracking order
     Q  = Queue()
     
     
     print "Initialization Complete: Begin Chung Lu"
     
-    #Edge Tuple has format (v_i, v_j, time/order_num)
+    #Edge Tuple has format (v_i, v_j)
     for i in range(num_edges):
         
         if Q.isEmpty():
@@ -94,26 +95,27 @@ def ChungLu():# We must set both FileName,edges):
             temp2 = Node.data[1] #node type
             del Node
 
-            if temp2 = 0: #0 is source node, 1 is target
+            if temp2 == 0: #0 is source node, 1 is target
                 v_i = temp2
                 prob = random.random()
                 v_j  = Node_Select(in_Pi, prob)
             else:
                 v_j = temp2
                 prob = random.random()
-                v_i  = Node_Select(in_Pi, prob)
+                v_i  = Node_Select(out_Pi, prob)
         
         if (v_i,v_j) not in Edges:
-            Edges.append((v_i,v_j)) #append as tuple so list is in order of generation 
+            Edges.add((v_i,v_j)) #add to set as unique element 
+            Edges2.append((v_i,v_j)) #append as tuple so list is in order of generation
             
         else:
             Q.enqueue((v_i,0)) #0 is for source node
             Q.enqueue((v_j,1)) #1 is for target node 
             
         if (i % 10000 == 0):
-            print (i/10000)
+            print i
             
-    PrintChungLu(Edges)
+    PrintChungLu(Edges2)
             
     return ()
         
@@ -229,7 +231,7 @@ def TransChungLu():
     Edges2 = {} #second dict that is opposite of first - ONLY for P learning alg
 
     
-    File = open("CL","r")
+    File = open("FRDG","r")
     List = [] #tracks order of edge introduction 
     for line in File:
         line = line.strip()
@@ -384,7 +386,7 @@ def TransChungLu():
         #EndIf
 
         #eliminate oldest node if added to set
-        if addToSet = True:
+        if addToSet == True:
             #identify node to remove
             Node = List.pop(0) #removes oldest element from Edges list (in order by generation time)
 
@@ -396,10 +398,13 @@ def TransChungLu():
             if (len(Edges[temp2]) <= 1): 
                 #eliminate key and set
                 Edges.pop(temp2,None) 
-                Edges2.pop(temp1,None)
             else:
                 #eliminate target node from set
                 Edges[temp2].remove(temp1)
+
+            if (len(Edges2[temp1]) <= 1):
+                Edges2.pop(temp1,None)
+            else:
                 Edges2[temp1].remove(temp2)
             
             
@@ -414,7 +419,7 @@ def TransChungLu():
             
 
 def Print_Model(edgeDict):
-    File = open("TCL","w")
+    File = open("FRDG_TCL_4","w")
     #each key is a target node, with a set of source nodes
     for targetNode in edgeDict:
         sourceSet = edgeDict[targetNode]
@@ -445,12 +450,6 @@ def PrintChungLu(Edges):
         
     File.close()
 #####################################Main Program##############################
-start = time.time()
-ChungLu()
-done = time.time()
-delta = done - start
-print("This program took {0:f}".format(delta))
-
 start = time.time()
 TransChungLu()
 done = time.time()
