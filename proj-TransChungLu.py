@@ -146,7 +146,11 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
             v_j = None
             while (v_i == None or v_j == None):
                 try:
-                    v_i = Node_Select(out_Pi, random.random()) #get a source node at random
+                    d = Bernouli(.5)
+                    if (d == 0):
+                        v_i = Node_Select(out_Pi, random.random()) #get a source node at random
+                    else:
+                        v_i = Node_Select(in_Pi, random.random())
 
                     #create a candidate set of all nodes that connect to v_i
                     candidateSet = set()
@@ -162,9 +166,16 @@ def learnP(Edges, Edges2, out_pi, out_Pi, in_deg, out_deg, in_pi):
                     #get a target node  
                     v_j = random.sample(candidateSet,1)[0] #will throw error if v_i has no edges
                     
-                    if (len(Edges2[v_j]) == 1): #if target has no other edges, then retry 
+                    #if target has no other edges, then retry
+                    if (len(Edges2[v_j]) == 1):  
                         
                         if(len(Edges[v_j]) == 0): #throws an error also if empty
+                            v_i = None
+                            v_j = None
+
+                    if (len(Edges[v_j]) == 1):  
+                        
+                        if(len(Edges2[v_j]) == 0): #throws an error also if empty
                             v_i = None
                             v_j = None
                                   
