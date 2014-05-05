@@ -3,7 +3,7 @@ temp <- read.table("./clusteringDistros/ccf.twitter.tab", header=FALSE, sep="\t"
 x1 <- temp[,1]
 y1 <- temp[,2]
 
-temp <- read.table("./clusteringDistros/ccf.TCL.tab", header=FALSE, sep="\t", skip=4)
+temp <- read.table("./clusteringDistros/ccf.TCL_1.tab", header=FALSE, sep="\t", skip=4)
 x2 <- temp[,1]
 y2 <- temp[,2]
 
@@ -15,7 +15,7 @@ temp <- read.table("./clusteringDistros/ccf.FRDG_TCL.tab", header=FALSE, sep="\t
 x4 <- temp[,1]
 y4 <- temp[,2]
 
-temp <- read.table("./clusteringDistros/ccf.FRDG_TCL_3.tab", header=FALSE, sep="\t", skip=4)
+temp <- read.table("./clusteringDistros/ccf.FRDG_TCL_4.tab", header=FALSE, sep="\t", skip=4)
 x5 <- temp[,1]
 y5 <- temp[,2]
 
@@ -41,7 +41,7 @@ temp <- read.table("./HopPlots/hop.twitter.tab", header=FALSE, sep="\t", skip=4)
 x1 <- temp[,1]
 y1 <- temp[,2]
 
-temp <- read.table("./HopPlots/hop.TCL.tab", header=FALSE, sep="\t", skip=4)
+temp <- read.table("./HopPlots/hop.TCL_1.tab", header=FALSE, sep="\t", skip=4)
 x2 <- temp[,1]
 y2 <- temp[,2]
 
@@ -53,7 +53,7 @@ temp <- read.table("./HopPlots/hop.FRDG_TCL.tab", header=FALSE, sep="\t", skip=4
 x4 <- temp[,1]
 y4 <- temp[,2]
 
-temp <- read.table("./HopPlots/hop.FRDG_TCL_3.tab", header=FALSE, sep="\t", skip=4)
+temp <- read.table("./HopPlots/hop.FRDG_TCL_4.tab", header=FALSE, sep="\t", skip=4)
 x5 <- temp[,1]
 y5 <- temp[,2]
 
@@ -78,7 +78,7 @@ temp <- read.table("./inDegreeDistros/indeg_twitter", header=FALSE, sep=" ")
 x1 <- temp[,1]
 y1 <- temp[,2]
 
-temp <- read.table("./inDegreeDistros/indeg_TCL", header=FALSE, sep=" ")
+temp <- read.table("./inDegreeDistros/indeg_TCL_1", header=FALSE, sep=" ")
 x2 <- temp[,1]
 y2 <- temp[,2]
 
@@ -90,7 +90,7 @@ temp <- read.table("./inDegreeDistros/indeg_FRDG_TCL", header=FALSE, sep=" ")
 x4 <- temp[,1]
 y4 <- temp[,2]
 
-temp <- read.table("./inDegreeDistros/indeg_FRDG_TCL_3", header=FALSE, sep=" ")
+temp <- read.table("./inDegreeDistros/indeg_FRDG_TCL_4", header=FALSE, sep=" ")
 x5 <- temp[,1]
 y5 <- temp[,2]
 
@@ -115,7 +115,7 @@ temp <- read.table("./outDegreeDistros/outdeg_twitter", header=FALSE, sep=" ")
 x1 <- temp[,1]
 y1 <- temp[,2]
 
-temp <- read.table("./outDegreeDistros/outdeg_TCL", header=FALSE, sep=" ")
+temp <- read.table("./outDegreeDistros/outdeg_TCL_1", header=FALSE, sep=" ")
 x2 <- temp[,1]
 y2 <- temp[,2]
 
@@ -127,7 +127,7 @@ temp <- read.table("./outDegreeDistros/outdeg_FRDG_TCL", header=FALSE, sep=" ")
 x4 <- temp[,1]
 y4 <- temp[,2]
 
-temp <- read.table("./outDegreeDistros/outdeg_FRDG_TCL_3", header=FALSE, sep=" ")
+temp <- read.table("./outDegreeDistros/outdeg_FRDG_TCL_4", header=FALSE, sep=" ")
 x5 <- temp[,1]
 y5 <- temp[,2]
 
@@ -165,7 +165,7 @@ temp <- read.table("./recipDegreeDistros/recipdeg_FRDG_TCL", header=FALSE, sep="
 x4 <- temp[,1]
 y4 <- temp[,2]
 
-temp <- read.table("./recipDegreeDistros/recipdeg_FRDG_TCL_3", header=FALSE, sep=" ")
+temp <- read.table("./recipDegreeDistros/recipdeg_FRDG_TCL_4", header=FALSE, sep=" ")
 x5 <- temp[,1]
 y5 <- temp[,2]
 
