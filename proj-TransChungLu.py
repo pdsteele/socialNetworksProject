@@ -231,7 +231,7 @@ def TransChungLu():
     Edges2 = {} #second dict that is opposite of first - ONLY for P learning alg
 
     
-    File = open("FRDG","r")
+    File = open("CL","r")
     List = [] #tracks order of edge introduction 
     for line in File:
         line = line.strip()
@@ -419,7 +419,7 @@ def TransChungLu():
             
 
 def Print_Model(edgeDict):
-    File = open("FRDG_TCL_4","w")
+    File = open("TCL","w")
     #each key is a target node, with a set of source nodes
     for targetNode in edgeDict:
         sourceSet = edgeDict[targetNode]
@@ -450,6 +450,12 @@ def PrintChungLu(Edges):
         
     File.close()
 #####################################Main Program##############################
+start = time.time()
+ChungLu()
+done = time.time()
+delta = done - start
+print("This program took {0:f}".format(delta))
+
 start = time.time()
 TransChungLu()
 done = time.time()
