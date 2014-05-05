@@ -184,4 +184,3 @@ lines(x5,y5, col="purple")
 legend(x=200, y=12000, legend=c('Original', 'FRDG', 'Random 50%', 'FRDG from 25%', 'FRDG from 50%'), col=c('red','orange','green', 'blue', 'purple'), lty=c(1,1,1,1,1))
 
 dev.off()
-
