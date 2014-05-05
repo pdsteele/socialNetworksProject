@@ -1,5 +1,9 @@
 #
+<<<<<<< HEAD
 # In-degree Distribution. G(80583, 1730617). 10494 (0.1302) nodes with in-deg > avg deg (43.0), 3758 (0.0466) with >2*avg.deg (Sun May  4 21:56:03 2014)
+=======
+# In-degree Distribution. G(80583, 1730617). 10494 (0.1302) nodes with in-deg > avg deg (43.0), 3758 (0.0466) with >2*avg.deg (Sun May  4 20:26:08 2014)
+>>>>>>> 128e39770fa39eb47573f2a88e998f946af5cd45
 #
 # In-degree	Count
 0	3072

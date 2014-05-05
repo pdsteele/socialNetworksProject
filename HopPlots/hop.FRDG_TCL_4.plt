@@ -1,8 +1,8 @@
 #
-# Hop Plot. Hop plot. EffDiam: 6.38666, G(80583, 1730617) (Sun May  4 21:56:07 2014)
+# Hop Plot. Hop plot. EffDiam: 5.76734, G(80583, 1730617) (Sun May  4 20:26:11 2014)
 #
 
-set title "Hop Plot. Hop plot. EffDiam: 6.38666, G(80583, 1730617)"
+set title "Hop Plot. Hop plot. EffDiam: 5.76734, G(80583, 1730617)"
 set key bottom right
 set logscale y 10
 set format y "10^{%L}"

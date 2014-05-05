@@ -1,5 +1,9 @@
 #
+<<<<<<< HEAD
 # Clustering Coefficient Distribution. G(80583, 1730617). Average clustering: 0.0374  OpenTriads: 186413958 (0.9973)  ClosedTriads: 500989 (0.0027) (Sun May  4 21:56:03 2014)
+=======
+# Clustering Coefficient Distribution. G(80583, 1730617). Average clustering: 0.0374  OpenTriads: 186413958 (0.9973)  ClosedTriads: 500989 (0.0027) (Sun May  4 20:26:07 2014)
+>>>>>>> 128e39770fa39eb47573f2a88e998f946af5cd45
 #
 
 set title "Clustering Coefficient Distribution. G(80583, 1730617). Average clustering: 0.0374  OpenTriads: 186413958 (0.9973)  ClosedTriads: 500989 (0.0027)"

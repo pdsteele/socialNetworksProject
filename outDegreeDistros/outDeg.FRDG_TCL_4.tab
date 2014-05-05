@@ -1,5 +1,9 @@
 #
+<<<<<<< HEAD
 # Out-degree Distribution. G(80583, 1730617). 11784 (0.1462) nodes with out-deg > avg deg (43.0), 3170 (0.0393) with >2*avg.deg (Sun May  4 21:56:03 2014)
+=======
+# Out-degree Distribution. G(80583, 1730617). 11784 (0.1462) nodes with out-deg > avg deg (43.0), 3170 (0.0393) with >2*avg.deg (Sun May  4 20:26:08 2014)
+>>>>>>> 128e39770fa39eb47573f2a88e998f946af5cd45
 #
 # Out-degree	Count
 0	7240
